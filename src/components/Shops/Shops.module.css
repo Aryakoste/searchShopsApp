@@ -1,0 +1,162 @@
+/* Filters Style */
+.shopsFilter {
+    width: 24%;
+    border-radius: 20px;
+    border: 1px solid black;
+    position: absolute;
+    background-color: white;
+    box-shadow: 10px 10px 10px grey;
+    top: 30%;
+}
+
+.filterButton {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #007ef5e5;
+    color: white;
+}
+
+.filterHeading {
+    display: flex;
+    justify-content: space-between;
+    font-size: 19px;
+    border-bottom: 1px solid grey;
+    padding: 20px;
+}
+
+.filterList {
+    padding-bottom: 10px;
+}
+
+/* main Shops List */
+.main { 
+    margin-top: 10%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.shopsMain {
+    display: flex;
+    gap: 20px;
+}
+
+
+.mainShops {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.shopsCard {
+    height: 300px;
+    width: 300px;
+    background-color: whitesmoke;
+    border-radius: 30px;
+    box-shadow: 5px 2px 6px #888888;
+}
+
+.searchMain {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 25px;
+    gap: 10px;
+    border-bottom: 1px solid grey;
+}
+
+.shopSearch {
+    display: flex;
+    width: 40%;
+    border-radius: 30px;
+    border: 1px solid grey;
+}
+
+.shopSearch input {
+    background: none;
+    border: none;
+    width: 99%;
+    height: 30px;
+    align-self: center;
+}
+
+.shopSearch input:focus {
+    outline: none;
+}
+
+/* Admin Button */
+
+.adminButton {
+    text-align: center;
+    padding: 20px 0 20px 0;
+}
+
+.adminButton button {
+    width: 35%;
+    padding: 15px;
+    border-radius: 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #007ef5e5;
+    border-color: white;
+}
+
+/* DropDown */
+
+.drpDown {
+    align-self: center;
+    font-size: 18px; 
+    color: #959595;
+    font-style: italic;
+  }
+  
+  
+  .drp__menu {
+    color: #000000;
+    font-style: normal;
+    right: 20px;
+    padding-top: 10px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(50px);
+    text-align: left;
+    z-index: 2;
+    width: 200px;
+    margin-top: -0.5px;
+    -webkit-overflow-scrolling: touch;
+    border: 0.3px solid rgba(213, 213, 213, 0.5);
+    box-sizing: border-box;
+    backdrop-filter: blur(50px);
+  }
+  
+  .drp__menu > div {
+    padding-top: 14px;
+    border-bottom: 0.4px solid #cc9b66;
+    padding-left: 32px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+  }
+
+  .areaDropDown {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0 14px 0;
+  }
+.addShopButton {
+    text-align: center;
+}
+
+.addShopButton button {
+    width: 60%;
+    padding: 10px;
+}
+
+@media (max-width: 500px) {
+    .shopsMain {
+        flex-direction: column;
+    }
+    .mainShops {
+        justify-content: center;
+    }
+    .shopsCard {
+        width: 90%;
+    }
+}

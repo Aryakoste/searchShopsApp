@@ -1,0 +1,34 @@
+.mainHeader {
+    position: fixed;
+    top: 0;
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    z-index: 20;
+}
+
+.Header  {
+    display: flex;
+    gap: 20px;
+    height: 100%;
+    width: 100%;
+    padding: 8px;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-shadow: 5px 5px 5px #888888;
+    border: 1px solid grey;
+    background-color: black;
+    color: white;
+}
+
+.Header a {
+    align-self: center;
+}
+
+.Header div {
+    margin-left: auto;
+    text-align: center;
+    align-self: center;
+}
