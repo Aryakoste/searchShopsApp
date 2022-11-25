@@ -1,38 +1,45 @@
 export const data = [
     {
-        name: 'My shop',
+        name: 'Chemtech Store',
         area: 'Mumbai',
         category: 'Chemist',
-        openingDate: '',
-        closingDate: ''
+        openingTime: '09:00:00',
+        closingTime: '21:00:00'
     },
     {
-        name: 'My shop',
+        name: 'General Store',
         area: 'Mumbai',
         category: 'Grocery',
-        openingDate: '',
-        closingDate: ''
+        openingTime: '12:00:00',
+        closingTime: '21:00:00'
     },
     {
-        name: 'My shop',
-        area: 'Mumbai',
+        name: 'Sabji Mandal',
+        area: 'Thane',
         category: 'Grocery',
-        openingDate: '',
-        closingDate: ''
+        openingTime: '09:00:00',
+        closingTime: '18:00:00'
     },
     {
-        name: 'My shop',
+        name: 'Bread and Crumbs',
         area: 'Ahmednagar',
         category: 'Baker',
-        openingDate: '',
-        closingDate: ''
+        openingTime: '13:00:00',
+        closingTime: '21:00:00'
     },
     {
-        name: 'My shop',
+        name: 'Heal and Cure',
         area: 'Solapur',
         category: 'Medicine',
-        openingDate: '',
-        closingDate: ''
+        openingTime: '15:00:00',
+        closingTime: '22:00:00'
+    },
+    {
+        name: 'Accessorial Shop',
+        area: 'Solapur',
+        category: 'Stationary Shop',
+        openingTime: '07:00:00',
+        closingTime: '20:00:00'
     }
 ];
 

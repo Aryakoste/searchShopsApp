@@ -1,0 +1,33 @@
+.mainIntro {
+    background-color: #4d4d4f;
+    height: 440px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #4cc8ff;
+}
+
+.introText div {
+    font-size: 50px;
+}
+
+.introText p {
+    color: white;
+}
+
+.introImage img {
+    width: 400px;
+    height: 300px;
+}
+
+@media  (max-width: 600px) {
+    .mainIntro {
+        padding: 30px;
+    }
+    .introImage img {
+        display: none;
+    }
+    .introText div {
+        font-size: 30px;
+    }
+}

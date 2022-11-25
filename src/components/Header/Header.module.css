@@ -1,11 +1,10 @@
 .mainHeader {
-    position: fixed;
+    position: sticky;
     top: 0;
     height: 10%;
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
     z-index: 20;
 }
 
@@ -20,11 +19,14 @@
     box-shadow: 5px 5px 5px #888888;
     border: 1px solid grey;
     background-color: black;
-    color: white;
+    color: #4cc8ff;
 }
 
 .Header a {
     align-self: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: #4cc8ff;
 }
 
 .Header div {

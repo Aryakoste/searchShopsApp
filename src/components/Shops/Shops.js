@@ -12,13 +12,17 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import useDidMountEffect from "../../Custom Hook/useDidMountEffect";
 import useOnClickOutside from "../../Custom Hook/useOnClickOutside";
+import { useSelector } from "react-redux";
+import { useMediaQuery } from 'react-responsive';
 
 
 const Shops = () => {
 
+    const [firstRender, setFirstRender] = useState(false);
     const [shopName, setShopName] = useState('');
     const [openingTime, setOpeningTime] = useState();
     const [closingTime, setClosingTime] = useState();
+    const [ openingStatus, setOpeningStatus ] = useState();
     const [area, setArea] = useState();
     const [sCategory, setSCategory] = useState();
     const [addModal, setAddModal] = useState(false);
@@ -29,6 +33,11 @@ const Shops = () => {
     const [selectedArea, setSelectedArea] = useState('Select Area');
     const [showCategoryFilter, setShowCategoryFilter] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('Select Category');
+    const isAdmin = useSelector(state => state.main.isAdmin);
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 600px)'
+    });
 
     const customStyles = {
         content: {
@@ -38,7 +47,7 @@ const Shops = () => {
           bottom: 'auto',
           marginRight: '-50%',
           transform: 'translate(-50%, -50%)',
-          width: '40%',
+          width: !isMobile ? '40%': 'auto',
           height: 'auto'
         },
       };
@@ -50,12 +59,31 @@ const Shops = () => {
       })
 
       useEffect(() => {
-        if(selectedArea == 'Select Area') return;
+        if(firstRender == false){
+            setFirstRender(true);
+            return;
+        }
+        if(selectedArea !== 'Select Area')
         setFilterData(data.filter((data) => {
             return data.area === selectedArea;
         }));
         console.log(filterData);
-      }, [selectedArea])   
+
+        if(selectedCategory !== 'Select Category')
+        setFilterData(data.filter((data) => {
+            return data.category === selectedCategory;
+        }));
+
+        if(openingStatus){
+            const todayDate = new Date();
+            const date = new Date();
+            date.setHours(parseInt(data[0].openingTime.split(':')[0]));
+            date.setMinutes(parseInt(data[0].openingTime.split(':')[1]));
+            if(!date.getTime() - todayDate.getTime() < 0){
+                console.log(date.getTime() - todayDate.getTime());
+            }  
+        }
+      }, [selectedArea, openingStatus, selectedCategory])   
         
 
     const itemList = (items , func) => {
@@ -94,6 +122,7 @@ const Shops = () => {
             style={customStyles}
         >
         <div>
+            <div style={{textAlign: 'center'}}><h2>Add Shop</h2></div>
         <TextField style={{width: '100%'}} 
         id="outlined-basic" 
         label="Enter Shop Name" 
@@ -133,7 +162,7 @@ const Shops = () => {
             <div className={styles.areaDropDown}>
                 <div>Opening Time: </div>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                     <TimePicker
+                    <TimePicker
                     label="Opening Time"
                      value={openingTime}
                      onChange={(newValue) => {
@@ -178,11 +207,11 @@ const Shops = () => {
             </input>
         </div>
     </div>
-    <div className={styles.adminButton}>
+    {isAdmin && <div className={styles.adminButton}>
         <button onClick={() => {
             setAddModal(true);
         }}>Add Shop</button>
-    </div>
+    </div>}
     <div className={styles.shopsMain}>
         {showFilters && <div className={styles.shopsFilter} ref={filterRef}>
             <div className={styles.filterHeading}>
@@ -218,15 +247,39 @@ const Shops = () => {
                     </div>
                         {itemList(category, setSelectedCategory)}
                 </div>
+                <div className={styles.openCheck}>
+                    Open Status: <input type="checkbox" onChange={(e) => {
+                        setOpeningStatus(e.target.checked);
+                    }}/>
+                </div>
             </div>
         </div>}
         <div className={styles.mainShops}>
     {
         filterData.map(data => {
             return <div className={styles.shopsCard}>
-                    <h2>{data.name}</h2>
-                    <div>category: {data.category}</div>
-                    <div>Area: {data.area}</div>
+                    <div className={styles.cardHeadArea}>
+                        <h2>{data.name}</h2>
+                    </div>
+                    <div className={styles.cardDetails}>
+                        <div><span>Category : </span> {data.category}</div>
+                        <div><span>Area : </span> {data.area}</div>
+                        <div><span>Opening Time : </span> {data.openingTime}</div>
+                        <div><span>Closing Time : </span> {data.closingTime}</div>
+                    </div>
+                    {isAdmin && <div className={styles.cardButton}>
+                        <button style={{
+                            backgroundColor: 'green'
+                        }}>Edit</button>
+                        <button style={{
+                            backgroundColor: 'red'
+                        }} onClick={() => {
+                                let newData = filterData.filter((d) => {
+                                    return d !== data
+                                })
+                                setFilterData(newData);
+                        }}>Delete</button>
+                    </div>}
             </div>
         
         })
